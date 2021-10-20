@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "843922507643",
+    "project_id": "xenchat-a05ef",
+    "storage_bucket": "xenchat-a05ef.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:843922507643:android:380ac421160733d4a7dfde",
+        "android_client_info": {
+          "package_name": "com.example.xenchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "843922507643-8o16ebd2dvheb5v0855c8l0jchhfjc82.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-XUqBOghWoTQYqgVzPtvGNrA9CG_c1Fg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "843922507643-8o16ebd2dvheb5v0855c8l0jchhfjc82.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
