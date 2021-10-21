@@ -286,7 +286,7 @@ class _LoginState extends State<Login> {
                           Navigator.pushReplacementNamed(context, '/signup');
                         },
                         child: Text(
-                          "Create one..!",
+                          "Create one...!",
                           style: TextStyle(
                             fontFamily: 'Rubik',
                             fontSize: 18,
