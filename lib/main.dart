@@ -1,7 +1,12 @@
-// ignore_for_file: prefer_const_constructors, must_call_super, duplicate_ignore
+import 'dart:async';
 
 import 'package:xenchat/screens/Authentication/login.dart';
+import 'package:xenchat/screens/home/profilepage.dart';
+import 'package:xenchat/screens/home/contact.dart';
 import 'package:xenchat/screens/home/chatpage.dart';
+import 'package:xenchat/shared/loading.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+// import 'package:xenchat/shared/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -13,61 +18,31 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
 
-  dynamic currentUserData = FirebaseAuth.instance
-      .authStateChanges()
-      .listen((User? user) {
+  dynamic currentUserData =
+      FirebaseAuth.instance.authStateChanges().listen((User? user) {
     if (user == null) {
       print("user is currently not logged in");
       runApp(MaterialApp(
-        home: MyApp(),
+        debugShowCheckedModeBanner: false,
+        home: landingPage(),
         routes: {
+          '/initpage': (context) => landingPage(),
           '/signup': (context) => Signup(),
-          '/login': (context) => Login()
+          '/login': (context) => Login(),
+          '/loading': (context) => Loading(),
+          '/profilepage': (context) => ProfilePage(),
+          '/chatpage': (context) => ChatPage(),
+          '/contact': (context) => Contact()
         },
       ));
     } else {
       print("user = $user");
-      // ignore: prefer_const_constructors
       runApp(ChatPage());
     }
   });
-
-}
-class MyApp extends StatefulWidget {
-  const MyApp({Key? key}) : super(key: key);
-
-  @override
-  _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> {
-
-  dynamic page = "landingPage";
-
-  void xen() async{
-    await FirebaseAuth.instance
-        .authStateChanges()
-        .listen((User? user) {
-      if (user == null) {
-        page = landingPage();
-      } else {
-        page = ChatPage();
-      }
-    });
-  }
-
-  @override
-  void initState() {
-    xen();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    if(page=="landingPage"){
-      return landingPage();
-    }
-    else{
-      return page;
-    }
-  }
-}
+// dark purple - 0xFF706897
+// light purple - 0xFFE7E6F4
+// text color [dark purple] - 0xFF262A35
+// medium purple - 0xFF9088D3

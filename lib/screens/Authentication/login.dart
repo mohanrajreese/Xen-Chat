@@ -1,7 +1,11 @@
+import 'package:xenchat/shared/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+// import 'package:flutter/services.dart';
 import 'package:xenchat/shared/constants.dart';
 // import 'package:provider/provider.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
 class Login extends StatefulWidget {
   const Login({Key? key}) : super(key: key);
@@ -10,112 +14,222 @@ class Login extends StatefulWidget {
   _LoginState createState() => _LoginState();
 }
 
-class _LoginState extends State<Login>  {
-
-  final _formKey = GlobalKey<FormState>();
+class _LoginState extends State<Login> {
   String error = '';
-  bool loading = false;
+  bool _isHidden = true;
 
   // text field state
   String email = '';
+  String resendEmail = '';
   String password = '';
-  String mobileNo = '';
-  String userName = '';
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(20.0),
+          padding: const EdgeInsets.all(40.0),
           child: Form(
             child: Column(
               children: <Widget>[
-                Spacer(flex: 4,),
+                Spacer(
+                  flex: 4,
+                ),
                 Image.asset(
                   'media/XenLogo.png',
-                  height: 90.0,
-                  width: 600.0,
+                  height: 50.0,
+                  width: 400.0,
                 ),
-                Spacer(flex: 1,),
+                Spacer(
+                  flex: 2,
+                ),
                 Text(
-                  'Sign in to continue',
+                  'Log in',
                   style: TextStyle(
                       fontFamily: 'Rubik',
                       fontSize: 20,
-                      color: Colors.black,
+                      color: Colors.pinkAccent,
                       fontWeight: FontWeight.w400,
-                      letterSpacing: 0.8
-                  ),
+                      letterSpacing: 0.8),
                   textAlign: TextAlign.left,
                 ),
-                Spacer(flex: 2,),
+                Spacer(
+                  flex: 2,
+                ),
                 TextFormField(
-                  decoration: textInputDecoration.copyWith(hintText: "Email address"),
-                  validator: (val) => val!="" ? 'Enter an email' : null,
+                  decoration:
+                      textInputDecoration.copyWith(hintText: "Email address"),
+                  validator: (val) => val != "" ? 'Enter an email' : null,
                   onChanged: (val) {
                     setState(() => email = val);
                   },
                 ),
-                Spacer(flex: 1,),
+                Spacer(
+                  flex: 2,
+                ),
                 TextFormField(
-                  obscureText: true,
-                  decoration: textInputDecoration.copyWith(hintText: "Password"),
-                  validator: (val) => val!="" ? 'Enter an Password' : null,
+                  obscureText: _isHidden,
+                  decoration: textInputDecoration.copyWith(
+                    hintText: "Password",
+                    contentPadding: EdgeInsets.all(16.0),
+                    suffix: InkWell(
+                      onTap: () {
+                        setState(() {
+                          _isHidden = !_isHidden;
+                        });
+                      },
+                      child: Icon(Icons.visibility),
+                    ),
+                  ),
+                  validator: (val) => val != "" ? 'Enter an Password' : null,
                   onChanged: (val) {
                     setState(() => password = val);
                   },
+                ),
+                Spacer(
+                  flex: 1,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: <Widget>[
                     TextButton(
-                        onPressed: (){},
+                        onPressed: () async {
+                          Alert(
+                              context: context,
+                              title: "Find your Account",
+                              content: Column(
+                                children: <Widget>[
+                                  TextField(
+                                    onChanged: (val) {
+                                      setState(() => resendEmail = val);
+                                    },
+                                    decoration: InputDecoration(
+                                      icon: Icon(Icons.email_rounded),
+                                      labelText: 'Email address',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              buttons: [
+                                DialogButton(
+                                    onPressed: () async {
+                                      if (resendEmail.trim() != "") {
+                                        await auth.sendPasswordResetEmail(
+                                            email: resendEmail);
+                                        Navigator.pop(context);
+                                      } else {}
+                                    },
+                                    child: Text(
+                                      "Confirm",
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          letterSpacing: 1.0,
+                                          color: Colors.white),
+                                    ))
+                              ]).show();
+                        },
                         child: Text(
                           "Forgot Password ?",
                           style: TextStyle(
-                            color: Colors.deepOrangeAccent,
+                            color: Colors.black,
                             fontSize: 14.0,
                             fontWeight: FontWeight.w400,
                           ),
-                        )
-                    ),
+                        )),
                   ],
                 ),
-                Spacer(flex: 1,),
+                Spacer(
+                  flex: 2,
+                ),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    elevation: 6,
-                    padding: EdgeInsets.symmetric(horizontal: 50, vertical: 15),
+                    elevation: 3,
+                    padding:
+                        EdgeInsets.symmetric(horizontal: 100, vertical: 15),
                     backgroundColor: Colors.pinkAccent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
+                      borderRadius: BorderRadius.circular(35),
                     ),
                   ),
                   child: Text(
                     'LOGIN',
                     style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        letterSpacing: 1.0
-                    ),
+                        fontSize: 20, color: Colors.white, letterSpacing: 1.0),
                   ),
                   onPressed: () async {
-                    try {
-                      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
-                          email: email,
-                          password: password
-                      );
-                    } on FirebaseAuthException catch (e) {
-                      if (e.code == 'user-not-found') {
-                        print('No user found for that email.');
-                      } else if (e.code == 'wrong-password') {
-                        print('Wrong password provided for that user.');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Loading()),
+                    );
+                    if (email.trim() != "" && password.trim() != "") {
+                      try {
+                        UserCredential userCredential = await FirebaseAuth
+                            .instance
+                            .signInWithEmailAndPassword(
+                                email: email.trim(), password: password.trim());
+                      } on FirebaseAuthException catch (e) {
+                        // print(e.message);
+                        setState(() {
+                          error = e.message as String;
+                        });
+
+                        Navigator.pop(context);
+
+                        showToast(error,
+                            context: context,
+                            animation: StyledToastAnimation.slideFromTop,
+                            reverseAnimation: StyledToastAnimation.slideToTop,
+                            position: StyledToastPosition.top,
+                            startOffset: Offset(0.0, -3.0),
+                            reverseEndOffset: Offset(0.0, -3.0),
+                            duration: Duration(seconds: 5),
+                            //Animation duration   animDuration * 2 <= duration
+                            animDuration: Duration(seconds: 1),
+                            curve: Curves.elasticOut,
+                            backgroundColor: Colors.redAccent,
+                            reverseCurve: Curves.fastOutSlowIn);
                       }
+                    } else {
+                      if (email.trim() == "" && password.trim() == "") {
+                        setState(() {
+                          error = "Please, Enter Email and password";
+                        });
+                      } else if (email.trim() == "" && password.trim() != "") {
+                        setState(() {
+                          error = "Please, Enter Email Address";
+                        });
+                      } else {
+                        setState(() {
+                          error = "Please, Enter Password";
+                        });
+                      }
+                      Navigator.pop(context);
+                      showToast(error,
+                          context: context,
+                          animation: StyledToastAnimation.slideFromTop,
+                          reverseAnimation: StyledToastAnimation.slideToTop,
+                          position: StyledToastPosition.top,
+                          startOffset: Offset(0.0, -3.0),
+                          reverseEndOffset: Offset(0.0, -3.0),
+                          duration: Duration(seconds: 5),
+                          //Animation duration   animDuration * 2 <= duration
+                          animDuration: Duration(seconds: 1),
+                          textStyle: TextStyle(
+                            color: Colors.black,
+                          ),
+                          textAlign: TextAlign.center,
+                          curve: Curves.elasticOut,
+                          backgroundColor: Colors.amberAccent,
+                          reverseCurve: Curves.fastOutSlowIn);
                     }
                   },
                 ),
-                Spacer(flex: 1,),
+                Spacer(
+                  flex: 2,
+                ),
                 const Divider(
                   height: 20,
                   thickness: 1,
@@ -123,21 +237,20 @@ class _LoginState extends State<Login>  {
                   endIndent: 10,
                   color: const Color(0xFF706897),
                 ),
-                Spacer(flex: 1,),
+                Spacer(
+                  flex: 2,
+                ),
                 ElevatedButton.icon(
-                    onPressed: (){
-
-                    },
+                    onPressed: () {},
                     style: OutlinedButton.styleFrom(
-                      elevation: 2,
-                      padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
-                      backgroundColor:const Color(0xFFFFFFFF),
+                      elevation: 5,
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 15, vertical: 6),
+                      backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(35),
                         side: BorderSide(
-                            color: Colors.cyan,
-                            width: 1
-                        ),
+                            color: const Color(0xFF706897), width: 1),
                       ),
                     ),
                     icon: Image.asset(
@@ -146,16 +259,16 @@ class _LoginState extends State<Login>  {
                       height: 40.0,
                     ),
                     label: Text(
-                      "Continue with Google Account",
+                      "Continue with Google",
                       style: TextStyle(
                           color: Colors.black,
                           letterSpacing: 0.1,
                           fontWeight: FontWeight.w400,
-                          fontSize: 16.0
-                      ),
-                    )
+                          fontSize: 16.0),
+                    )),
+                Spacer(
+                  flex: 2,
                 ),
-                Spacer(flex: 2,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
@@ -170,22 +283,23 @@ class _LoginState extends State<Login>  {
                       textAlign: TextAlign.left,
                     ),
                     TextButton(
-                        onPressed: (){
+                        onPressed: () {
                           Navigator.pushReplacementNamed(context, '/signup');
                         },
                         child: Text(
-                          "Create one..",
+                          "Create one..!",
                           style: TextStyle(
                             fontFamily: 'Rubik',
                             fontSize: 20,
-                            color: Colors.lightBlueAccent,
+                            color: Colors.pink,
                             fontWeight: FontWeight.bold,
                           ),
-                        )
-                    ),
+                        )),
                   ],
                 ),
-                Spacer(),
+                Spacer(
+                  flex: 2,
+                ),
               ],
             ),
           ),

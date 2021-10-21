@@ -4,12 +4,27 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 class Loading extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      color: Colors.pink[50],
-      child: const Center(
-        child: SpinKitDoubleBounce(
-          color: Colors.purple,
-          size: 50.0,
+    return Scaffold(
+      backgroundColor: Color(0xFFE7E6F4),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            SpinKitFoldingCube(
+              color: Color(0xFF9088D3),
+              size: 50.0,
+            ),
+            SizedBox(height: 50.0,),
+            Text(
+                "Just a moment...",
+              style: TextStyle(
+                color: Color(0xFF706897),
+                fontSize: 35.0,
+                fontWeight: FontWeight.normal,
+                letterSpacing: 1.0
+              ),
+            )
+          ],
         ),
       ),
     );

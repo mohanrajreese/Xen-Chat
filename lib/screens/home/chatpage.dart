@@ -1,7 +1,12 @@
+import 'package:xenchat/screens/home/profilepage.dart';
+import 'package:xenchat/screens/home/contact.dart';
+import 'package:xenchat/screens/home/ChatPage.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
+import 'contact.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);
@@ -11,55 +16,71 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  int _index = 0;
 
-  int _selectedIndex = 0;
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-
- @override
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        
         appBar: AppBar(
-          title: Text("XenChat"),
-          backgroundColor: Colors.pinkAccent,
+          backgroundColor: Color(0xFFF0F0F0),
+          title: Image.asset(
+            'media/XenLogo.png',
+            height: 50,
+          ),
+          centerTitle: true,
+        ),
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(),
+                ));
+          },
+          backgroundColor: Color(0xFF9088D3),
+          elevation: 1.0,
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+              side: BorderSide(color: Colors.white, width: 4.0)),
+          child: Icon(Icons.add),
+        ),
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        bottomNavigationBar: FloatingNavbar(
+          onTap: (int val) {
+            setState(() {
+              _index = val;
+            });
+          },
+          backgroundColor: Color(0xFF9088D3),
+          currentIndex: _index,
+          items: [
+            FloatingNavbarItem(icon: Icons.format_list_bulleted_sharp),
+            FloatingNavbarItem(
+              icon: Icons.apps_rounded,
+            ),
+            FloatingNavbarItem(icon: Icons.supervisor_account_rounded),
+            FloatingNavbarItem(icon: Icons.notifications),
+          ],
         ),
         body: Center(
-          child: Container(
-          decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("media/landingPage.png"),
-            // fit:BoxFit.cover
-          ),
-        ),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: <Widget>[
-              Text(""),
-              
+              Text("Chat page"),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  elevation: 100,
-                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 11),
-                  backgroundColor: Colors.pinkAccent,
+                  elevation: 0,
+                  padding: EdgeInsets.symmetric(horizontal: 120, vertical: 15),
+                  backgroundColor: const Color(0xFF9088D3),
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: BorderRadius.circular(35),
                   ),
                 ),
-               
                 child: Text(
                   'LOGOUT',
                   style: TextStyle(
-                      fontSize: 20,
-                      color: Colors.white,
-                      letterSpacing: 1.0
-                  ),
+                      fontSize: 20, color: Colors.white, letterSpacing: 1.0),
                 ),
                 onPressed: () async {
                   await FirebaseAuth.instance.signOut();
@@ -67,40 +88,6 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ],
           ),
-        ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          
-          items: const <BottomNavigationBarItem>[
-            
-            BottomNavigationBarItem(
-              icon: Icon(Icons.chat_sharp,size: 40.0, color: Colors.cyan,),
-              label: 'Messages',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                Icons.contacts_rounded,
-                size: 40.0,
-                color: Colors.cyan,
-              ),
-              label: 'Contacts',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_sharp,size: 40.0, color: Colors.cyan ,),
-              label: 'Profile',
-              
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.logout,size: 30.0, color: Colors.cyan,),
-              label: 'LogOut',              
-            ),
-          ],
-          
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.red[900],
-          // showUnselectedLabels: true,
-          unselectedItemColor: Colors.black,
-          onTap: _onItemTapped,
         ),
       ),
     );

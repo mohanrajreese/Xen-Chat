@@ -1,11 +1,14 @@
+import 'package:xenchat/shared/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 
 class landingPage extends StatelessWidget {
-const landingPage({Key? key}) : super(key: key);
+  const landingPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color(0xFF9088D3),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
@@ -14,37 +17,42 @@ const landingPage({Key? key}) : super(key: key);
             fit: BoxFit.cover,
           ),
         ),
-
         child: Column(
           children: <Widget>[
-            Spacer(flex: 4,),
+            Spacer(
+              flex: 3,
+            ),
             Image.asset(
               'media/XenLogo.png',
-              height: 200, 
-              width:600,
+              height: 200.0,
+              width: 600.0,
             ),
             Spacer(flex: 6,),
             
-            Spacer(flex: 6,),
+            Spacer(flex: 6),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                  elevation: 6,
-                  padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
-                  backgroundColor: Colors.pinkAccent,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(35),),),
+                elevation: 4,
+                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+                backgroundColor: Colors.pinkAccent,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(35),
+                ),
+              ),
               child: Text(
-                'Lets Chat',
+                'Let\'s Chat',
                 style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.white,
+                  fontSize: 24,
+                  color: Colors.white54,
                 ),
               ),
               onPressed: () {
                 Navigator.pushNamed(context, '/signup');
               },
             ),
-            Spacer(flex: 2,),
+            Spacer(
+              flex: 2,
+            ),
           ],
         ),
       ),
