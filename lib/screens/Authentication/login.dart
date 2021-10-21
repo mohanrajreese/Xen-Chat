@@ -1,9 +1,9 @@
 import 'package:xenchat/shared/loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter/services.dart';
+import 'package:flutter/services.dart';
 import 'package:xenchat/shared/constants.dart';
-// import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 
@@ -31,7 +31,7 @@ class _LoginState extends State<Login> {
       resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
-          padding: const EdgeInsets.all(40.0),
+          padding: const EdgeInsets.all(20.0),
           child: Form(
             child: Column(
               children: <Widget>[
@@ -40,14 +40,14 @@ class _LoginState extends State<Login> {
                 ),
                 Image.asset(
                   'media/XenLogo.png',
-                  height: 50.0,
-                  width: 400.0,
+                  height: 100.0,
+                  width: 600.0,
                 ),
                 Spacer(
                   flex: 2,
                 ),
                 Text(
-                  'Log in',
+                  '',
                   style: TextStyle(
                       fontFamily: 'Rubik',
                       fontSize: 20,
@@ -68,27 +68,26 @@ class _LoginState extends State<Login> {
                   },
                 ),
                 Spacer(
-                  flex: 2,
+                  flex: 1,
                 ),
                 TextFormField(
-                  obscureText: _isHidden,
-                  decoration: textInputDecoration.copyWith(
-                    hintText: "Password",
-                    contentPadding: EdgeInsets.all(16.0),
-                    suffix: InkWell(
-                      onTap: () {
-                        setState(() {
-                          _isHidden = !_isHidden;
-                        });
-                      },
-                      child: Icon(Icons.visibility),
-                    ),
+                obscureText: _isHidden,
+                decoration: textInputDecoration.copyWith(
+                  contentPadding: EdgeInsets.all(16.0),
+                  hintText: "Password",
+                  suffix: InkWell(
+                    onTap: () {
+                      setState(() {
+                        _isHidden = !_isHidden;
+                      });
+                    },
+                    child: Icon(Icons.visibility),
                   ),
-                  validator: (val) => val != "" ? 'Enter an Password' : null,
-                  onChanged: (val) {
-                    setState(() => password = val);
-                  },
                 ),
+                onChanged: (val) {
+                  setState(() => password = val);
+                },
+              ),
                 Spacer(
                   flex: 1,
                 ),
@@ -134,8 +133,8 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Forgot Password ?",
                           style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 14.0,
+                            color: Colors.deepOrangeAccent,
+                            fontSize: 15.0,
                             fontWeight: FontWeight.w400,
                           ),
                         )),
@@ -146,12 +145,12 @@ class _LoginState extends State<Login> {
                 ),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    elevation: 3,
+                    elevation: 6,
                     padding:
-                        EdgeInsets.symmetric(horizontal: 100, vertical: 15),
+                        EdgeInsets.symmetric(horizontal: 50, vertical: 15),
                     backgroundColor: Colors.pinkAccent,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(35),
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                   child: Text(
@@ -180,17 +179,17 @@ class _LoginState extends State<Login> {
 
                         showToast(error,
                             context: context,
-                            animation: StyledToastAnimation.slideFromTop,
-                            reverseAnimation: StyledToastAnimation.slideToTop,
+                            animation: StyledToastAnimation.slideFromTopFade,
+                            reverseAnimation: StyledToastAnimation.slideToTopFade,
                             position: StyledToastPosition.top,
                             startOffset: Offset(0.0, -3.0),
                             reverseEndOffset: Offset(0.0, -3.0),
-                            duration: Duration(seconds: 5),
+                            duration: Duration(seconds: 6),
                             //Animation duration   animDuration * 2 <= duration
                             animDuration: Duration(seconds: 1),
-                            curve: Curves.elasticOut,
-                            backgroundColor: Colors.redAccent,
-                            reverseCurve: Curves.fastOutSlowIn);
+                            curve: Curves.easeIn,
+                            backgroundColor: Colors.cyan,
+                            reverseCurve: Curves.easeOut);
                       }
                     } else {
                       if (email.trim() == "" && password.trim() == "") {
@@ -209,8 +208,8 @@ class _LoginState extends State<Login> {
                       Navigator.pop(context);
                       showToast(error,
                           context: context,
-                          animation: StyledToastAnimation.slideFromTop,
-                          reverseAnimation: StyledToastAnimation.slideToTop,
+                          animation: StyledToastAnimation.slideFromTopFade,
+                          reverseAnimation: StyledToastAnimation.slideToTopFade,
                           position: StyledToastPosition.top,
                           startOffset: Offset(0.0, -3.0),
                           reverseEndOffset: Offset(0.0, -3.0),
@@ -218,11 +217,11 @@ class _LoginState extends State<Login> {
                           //Animation duration   animDuration * 2 <= duration
                           animDuration: Duration(seconds: 1),
                           textStyle: TextStyle(
-                            color: Colors.black,
+                            color: Colors.white,
                           ),
                           textAlign: TextAlign.center,
-                          curve: Curves.elasticOut,
-                          backgroundColor: Colors.amberAccent,
+                          curve: Curves.fastLinearToSlowEaseIn,
+                          backgroundColor: Colors.cyan,
                           reverseCurve: Curves.fastOutSlowIn);
                     }
                   },
@@ -230,16 +229,16 @@ class _LoginState extends State<Login> {
                 Spacer(
                   flex: 2,
                 ),
-                const Divider(
-                  height: 20,
-                  thickness: 1,
-                  indent: 10,
-                  endIndent: 10,
-                  color: const Color(0xFF706897),
-                ),
-                Spacer(
-                  flex: 2,
-                ),
+                // const Divider(
+                //   height: 20,
+                //   thickness: 1,
+                //   indent: 10,
+                //   endIndent: 10,
+                //   color: const Color(0xFF706897),
+                // ),
+                // Spacer(
+                //   flex: 2,
+                // ),
                 ElevatedButton.icon(
                     onPressed: () {},
                     style: OutlinedButton.styleFrom(
@@ -290,8 +289,8 @@ class _LoginState extends State<Login> {
                           "Create one..!",
                           style: TextStyle(
                             fontFamily: 'Rubik',
-                            fontSize: 20,
-                            color: Colors.pink,
+                            fontSize: 18,
+                            color: Colors.pinkAccent,
                             fontWeight: FontWeight.bold,
                           ),
                         )),
