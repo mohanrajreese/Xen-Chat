@@ -40,11 +40,8 @@ class _LoginState extends State<Login> {
                 ),
                 Image.asset(
                   'media/XenLogo.png',
-                  height: 100.0,
+                  height: 150.0,
                   width: 600.0,
-                ),
-                Spacer(
-                  flex: 2,
                 ),
                 Text(
                   '',
@@ -133,6 +130,7 @@ class _LoginState extends State<Login> {
                         child: Text(
                           "Forgot Password ?",
                           style: TextStyle(
+                            decoration: TextDecoration.underline,
                             color: Colors.deepOrangeAccent,
                             fontSize: 15.0,
                             fontWeight: FontWeight.w400,
@@ -141,7 +139,7 @@ class _LoginState extends State<Login> {
                   ],
                 ),
                 Spacer(
-                  flex: 2,
+                  flex: 1,
                 ),
                 OutlinedButton(
                   style: OutlinedButton.styleFrom(
@@ -247,7 +245,7 @@ class _LoginState extends State<Login> {
                           EdgeInsets.symmetric(horizontal: 15, vertical: 6),
                       backgroundColor: Colors.white,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(35),
+                        borderRadius: BorderRadius.circular(12),
                         side: BorderSide(
                             color: const Color(0xFF706897), width: 1),
                       ),

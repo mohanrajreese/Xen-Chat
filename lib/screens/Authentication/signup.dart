@@ -36,14 +36,14 @@ class _SignupState extends State<Signup> {
               ),
               Image.asset(
                 'media/XenLogo.png',
-                height: 200.0,
+                height: 150.0,
                 width: 600.0,
               ),
               Spacer(
                 flex: 1,
               ),
               Text(
-                'Register Here',
+                '',
                 style: TextStyle(
                   letterSpacing: 1.2,
                   fontFamily: 'Rubik',
@@ -53,9 +53,7 @@ class _SignupState extends State<Signup> {
                 ),
                 textAlign: TextAlign.left,
               ),
-              Spacer(
-                flex: 1,
-              ),
+              
               TextFormField(
                 decoration: textInputDecoration,
                 onChanged: (val) {
@@ -112,11 +110,11 @@ class _SignupState extends State<Signup> {
               ),
               OutlinedButton(
                 style: OutlinedButton.styleFrom(
-                  elevation: 0,
+                  elevation: 6,
                   padding: EdgeInsets.symmetric(horizontal: 60, vertical: 15),
                   backgroundColor: Colors.pinkAccent,
                   shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(12),
                   ),
                 ),
                 child: Text(

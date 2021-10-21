@@ -32,18 +32,18 @@ class landingPage extends StatelessWidget {
             Spacer(flex: 6),
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                elevation: 4,
-                padding: EdgeInsets.symmetric(horizontal: 100, vertical: 12),
+                elevation: 100,
+                padding: EdgeInsets.symmetric(horizontal: 60, vertical: 12),
                 backgroundColor: Colors.pinkAccent,
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(35),
+                  borderRadius: BorderRadius.circular(12),
                 ),
               ),
               child: Text(
                 'Let\'s Chat',
                 style: TextStyle(
                   fontSize: 24,
-                  color: Colors.white54,
+                  color: Colors.white,
                 ),
               ),
               onPressed: () {
