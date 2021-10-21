@@ -1,12 +1,11 @@
 import 'package:xenchat/screens/home/profilepage.dart';
-import 'package:xenchat/screens/home/contact.dart';
-import 'package:xenchat/screens/home/ChatPage.dart';
+// import 'package:xenchat/screens/home/contact.dart';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 
-import 'contact.dart';
 
 class ChatPage extends StatefulWidget {
   const ChatPage({Key? key}) : super(key: key);

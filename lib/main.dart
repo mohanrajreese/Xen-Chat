@@ -26,7 +26,7 @@ Future<void> main() async {
         debugShowCheckedModeBanner: false,
         home: landingPage(),
         routes: {
-          '/initpage': (context) => landingPage(),
+          '/landingpage': (context) => landingPage(),
           '/signup': (context) => Signup(),
           '/login': (context) => Login(),
           '/loading': (context) => Loading(),
@@ -42,7 +42,3 @@ Future<void> main() async {
   });
 }
 
-// dark purple - 0xFF706897
-// light purple - 0xFFE7E6F4
-// text color [dark purple] - 0xFF262A35
-// medium purple - 0xFF9088D3

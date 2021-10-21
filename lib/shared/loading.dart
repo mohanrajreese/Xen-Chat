@@ -10,20 +10,24 @@ class Loading extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SpinKitFoldingCube(
-              color: Color(0xFF9088D3),
-              size: 50.0,
+            SpinKitSpinningLines(
+              color: Colors.pinkAccent,
+              size: 100.0,
             ),
-            SizedBox(height: 50.0,),
-            Text(
-                "Just a moment...",
-              style: TextStyle(
-                color: Color(0xFF706897),
-                fontSize: 35.0,
-                fontWeight: FontWeight.normal,
-                letterSpacing: 1.0
-              ),
-            )
+            SpinKitDancingSquare(
+              color: Colors.pinkAccent,
+              size: 100.0,
+            ),
+            // SizedBox(height: 50.0,),
+            // Text(
+            //     "Wait a Second...",
+            //   style: TextStyle(
+            //     color: Colors.Black,
+            //     fontSize: 35.0,
+            //     fontWeight: FontWeight.normal,
+            //     letterSpacing: 1.0
+            //   ),
+            // )
           ],
         ),
       ),
