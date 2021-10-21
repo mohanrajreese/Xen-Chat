@@ -15,7 +15,7 @@ class _ContactState extends State<Contact> {
     return MaterialApp(
       home: Scaffold(
         body: Text("Contact page"),
-      ),
+       ),
     );;
   }
 }

@@ -1,10 +1,13 @@
-import 'package:xenchat/screens/home/profilepage.dart';
-// import 'package:xenchat/screens/home/contact.dart';
-
+import 'package:flutter/cupertino.dart';
+import 'package:xenchat/landingPage.dart';
+import 'package:xenchat/screens/home/contact.dart';
+// import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 // import 'package:provider/provider.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
+import 'package:xenchat/screens/home/profilepage.dart';
+import 'lib.dart';
 
 
 class ChatPage extends StatefulWidget {
@@ -15,77 +18,82 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+
   int _index = 0;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          backgroundColor: Color(0xFFF0F0F0),
-          title: Image.asset(
-            'media/XenLogo.png',
-            height: 50,
-          ),
-          centerTitle: true,
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => ProfilePage(),
-                ));
-          },
-          backgroundColor: Color(0xFF9088D3),
-          elevation: 1.0,
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-              side: BorderSide(color: Colors.white, width: 4.0)),
-          child: Icon(Icons.add),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: FloatingNavbar(
-          onTap: (int val) {
-            setState(() {
-              _index = val;
-            });
-          },
-          backgroundColor: Color(0xFF9088D3),
-          currentIndex: _index,
-          items: [
-            FloatingNavbarItem(icon: Icons.format_list_bulleted_sharp),
-            FloatingNavbarItem(
-              icon: Icons.apps_rounded,
+      home: Builder(
+        builder: (context)=> Scaffold(
+          appBar: AppBar(
+            backgroundColor: Colors.pinkAccent,
+            title: Image.asset(
+              'media/XenLogo.png',
+              height: 60,
+              width: 150,
             ),
-            FloatingNavbarItem(icon: Icons.supervisor_account_rounded),
-            FloatingNavbarItem(icon: Icons.notifications),
-          ],
-        ),
-        body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: <Widget>[
-              Text("Chat page"),
-              OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  elevation: 0,
-                  padding: EdgeInsets.symmetric(horizontal: 120, vertical: 15),
-                  backgroundColor: const Color(0xFF9088D3),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(35),
-                  ),
-                ),
-                child: Text(
-                  'LOGOUT',
-                  style: TextStyle(
-                      fontSize: 20, color: Colors.white, letterSpacing: 1.0),
-                ),
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut();
-                },
-              ),
+            centerTitle: true,
+          ),
+          bottomNavigationBar: FloatingNavbar(
+            onTap: (int val) {
+              setState(() { _index = val; } );
+              if(val==0){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> ChatPage(),
+                    )
+                );
+              }
+              if(val==1){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> Contact(),
+                    )
+                );
+              }
+              if(val==2){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> ProfilePage(),
+                    )
+                );
+              }
+              if(val==3){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> landingPage(),
+                    )
+                );
+              }
+            },
+            backgroundColor: CupertinoColors.systemPink,
+            currentIndex: _index,
+            items: [
+              FloatingNavbarItem(icon: Icons.message_outlined),
+              FloatingNavbarItem(icon: Icons.contact_page_outlined ),
+              FloatingNavbarItem(icon: Icons.account_box_outlined),
+              FloatingNavbarItem(icon: Icons.exit_to_app_outlined),
             ],
+          ),
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text("Home page"),
+                OutlinedButton(
+                  
+                  child: Text(
+                    'LOGOUT',
+                    style: TextStyle(
+                        fontSize: 20, color: Colors.white, letterSpacing: 1.0),
+                  ),
+                  onPressed: () async {
+                    await FirebaseAuth.instance.signOut();
+                  },
+                ),
+              ],
+            ),
           ),
         ),
       ),
