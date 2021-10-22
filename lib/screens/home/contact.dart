@@ -15,15 +15,18 @@ class _ContactState extends State<Contact> {
     return MaterialApp(
       home: Scaffold(
         body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text("Home page"),
-                
-              ],
+            child: Container(child: Container(
+          decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("media/cs1.jpg"),
+            fit: BoxFit.contain,
+          ),
+        ),
             ),
           ),
+        ),
       ),
+
     );
   }
 }

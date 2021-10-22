@@ -13,7 +13,7 @@ class landingPage extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage("media/test3.jpg"),
+            image: AssetImage("media/test4.jpg"),
             fit: BoxFit.cover,
           ),
         ),
