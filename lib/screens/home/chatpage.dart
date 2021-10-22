@@ -27,7 +27,7 @@ class _ChatPageState extends State<ChatPage> {
           appBar: AppBar(
             backgroundColor: Colors.pinkAccent,
             title: Image.asset(
-              'media/XenLogo.png',
+              'media/Xen1.png',
               height: 60,
               width: 150,
             ),
@@ -114,21 +114,14 @@ class _ChatPageState extends State<ChatPage> {
             
             BottomNavigationBarItem(
               icon: Icon(Icons.chat_sharp,size: 40.0, color: Colors.cyan,),
-              label: 'Messages',
-            ),
+              label: 'Messages',),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.contacts_rounded,
-                size: 40.0,
-                color: Colors.cyan,
-              ),
-              label: 'Contacts',
-            ),
+                Icons.contacts_rounded,size: 40.0,color: Colors.cyan,),
+              label: 'Contacts',),
             BottomNavigationBarItem(
               icon: Icon(Icons.person_outline_sharp,size: 40.0, color: Colors.cyan ,),
-              label: 'Profile',
-              
-            ),
+              label: 'Profile',),
             BottomNavigationBarItem(
               icon: Icon(Icons.logout,size: 30.0, color: Colors.cyan,),
               label: 'LogOut',              
@@ -142,6 +135,14 @@ class _ChatPageState extends State<ChatPage> {
               children: <Widget>[
                 Text("Home page"),
                 OutlinedButton(
+                   style: OutlinedButton.styleFrom(
+                  elevation: 100,
+                  padding: EdgeInsets.symmetric(horizontal: 60, vertical: 11),
+                  backgroundColor: Colors.pinkAccent,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12.0),
+                  ),
+                ),
                   
                   child: Text(
                     'LOGOUT',

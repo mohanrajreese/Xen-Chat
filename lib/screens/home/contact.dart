@@ -14,8 +14,16 @@ class _ContactState extends State<Contact> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
-        body: Text("Contact page"),
-       ),
-    );;
+        body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: <Widget>[
+                Text("Home page"),
+                
+              ],
+            ),
+          ),
+      ),
+    );
   }
 }
