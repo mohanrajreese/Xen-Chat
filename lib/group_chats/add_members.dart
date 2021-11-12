@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddMembersINGroup extends StatefulWidget {
@@ -32,12 +33,12 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
 
   void onSearch() async {
     setState(() {
-      isLoading = true;
+      isLoading = false;
     });
 
     await _firestore
         .collection('users')
-        .where("email", isEqualTo: _search.text)
+        .where("email", isEqualTo: _search.text) 
         .get()
         .then((value) {
       setState(() {
@@ -69,6 +70,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: CupertinoColors.systemPink,
         title: Text("Add Members"),
       ),
       body: SingleChildScrollView(
@@ -79,6 +81,7 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
               height: size.height / 20,
             ),
             Container(
+              
               height: size.height / 14,
               width: size.width,
               alignment: Alignment.center,
@@ -87,8 +90,9 @@ class _AddMembersINGroupState extends State<AddMembersINGroup> {
                 width: size.width / 1.15,
                 child: TextField(
                   controller: _search,
+                  
                   decoration: InputDecoration(
-                    hintText: "Search",
+                    hintText: "Searching",
                     border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),

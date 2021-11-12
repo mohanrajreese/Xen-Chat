@@ -10,7 +10,6 @@ import 'package:xenchat/group_chats/group_chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
     const HomeScreen({Key? key}) : super(key: key);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -168,13 +167,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               bottomNavigationBar: BottomNavigationBar(
             onTap: (int val) {
               setState(() { _index = val; } );
-              if(val==0){
-                Navigator.push(context,
-                    MaterialPageRoute(
-                      builder: (context)=> GroupChatHomeScreen(),
-                    )
-                );
-              }
+              // if(val==0){
+              //   Navigator.push(context,
+              //       MaterialPageRoute(
+              //         builder: (context)=> GroupChatHomeScreen(),
+              //       )
+              //   );
+              // }
               if(val==1){
                 Navigator.push(context,
                     MaterialPageRoute(
@@ -197,25 +196,25 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               //   );
               // }
             },
-            backgroundColor: CupertinoColors.systemPink,
+            backgroundColor: CupertinoColors.tertiarySystemGroupedBackground,
             currentIndex: _index,
           
           items: const <BottomNavigationBarItem>[
             
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat_sharp,size: 40.0, color: Colors.cyan,),
+              icon: Icon(Icons.chat_sharp,size: 40.0, color: CupertinoColors.systemBlue,),
               label: 'Messages',),
             BottomNavigationBarItem(
               icon: Icon(
-                Icons.groups_outlined,size: 40.0,color: Colors.cyan,),
-              label: 'Contacts',),
+                Icons.groups_outlined,size: 40.0,color: CupertinoColors.systemBlue,),
+              label: 'Groups',),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person_outline_sharp,size: 40.0, color: Colors.cyan ,),
-              label: 'Profile',),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.logout,size: 30.0, color: Colors.cyan,),
-              label: 'LogOut',              
-            ),
+              icon: Icon(Icons.logout,size: 40.0, color: CupertinoColors.activeBlue ,),
+              label: 'Logout',),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.logout,size: 30.0, color: Colors.cyan,),
+            //   label: 'LogOut',              
+          //   ),
           ],
           ), 
 
