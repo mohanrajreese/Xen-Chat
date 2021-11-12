@@ -1,3 +1,4 @@
+import 'package:flutter/rendering.dart';
 import 'package:xenchat/Authenticate/Methods.dart';
 import 'package:flutter/material.dart';
 
@@ -97,6 +98,7 @@ class _CreateAccountState extends State<CreateAccount> {
                   SizedBox(
                     height: size.height / 20,
                   ),
+
                   customButton(size),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
@@ -105,9 +107,9 @@ class _CreateAccountState extends State<CreateAccount> {
                       child: Text(
                         "Login",
                         style: TextStyle(
-                          color: Colors.blue,
-                          fontSize: 16,
-                          fontWeight: FontWeight.w500,
+                          color: Colors.blueAccent,
+                          fontSize: 19,
+                          fontWeight: FontWeight.bold
                         ),
                       ),
                     ),

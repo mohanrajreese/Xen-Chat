@@ -76,10 +76,16 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Home Screen"),
-        actions: [
-          IconButton(icon: Icon(Icons.logout), onPressed: () => logOut(context))
-        ],
+        backgroundColor: Colors.pinkAccent,
+            title: Image.asset(
+              'media/Xen1.png',
+              height: 60,
+              width: 150,
+            ),
+            centerTitle: true,
+        // actions: [
+        //   IconButton(icon: Icon(Icons.logout), onPressed: () => logOut(context))
+        // ],
       ),
       body: isLoading
           ? Center(
