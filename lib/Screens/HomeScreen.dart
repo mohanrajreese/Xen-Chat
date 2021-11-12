@@ -1,11 +1,16 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+
 import 'package:xenchat/Authenticate/Methods.dart';
 import 'package:xenchat/Screens/ChatRoom.dart';
 import 'package:xenchat/group_chats/group_chat_screen.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
+    const HomeScreen({Key? key}) : super(key: key);
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -16,6 +21,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
   final TextEditingController _search = TextEditingController();
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  int _index = 0;
 
   @override
   void initState() {
@@ -159,14 +165,68 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     : Container(),
               ],
             ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.group),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => GroupChatHomeScreen(),
-          ),
-        ),
-      ),
+              bottomNavigationBar: BottomNavigationBar(
+            onTap: (int val) {
+              setState(() { _index = val; } );
+              if(val==0){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> GroupChatHomeScreen(),
+                    )
+                );
+              }
+              if(val==1){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> GroupChatHomeScreen(),
+                    )
+                );
+              }
+              // if(val==2){
+              //   Navigator.push(context,
+              //       MaterialPageRoute(
+              //         builder: (context)=> logOut(),
+              //       )
+              //   );
+              // }
+              // if(val==3){
+              //   Navigator.push(context,
+              //       MaterialPageRoute(
+              //         builder: (context)=> landingPage(),
+              //       )
+              //   );
+              // }
+            },
+            backgroundColor: CupertinoColors.systemPink,
+            currentIndex: _index,
+          
+          items: const <BottomNavigationBarItem>[
+            
+            BottomNavigationBarItem(
+              icon: Icon(Icons.chat_sharp,size: 40.0, color: Colors.cyan,),
+              label: 'Messages',),
+            BottomNavigationBarItem(
+              icon: Icon(
+                Icons.groups_outlined,size: 40.0,color: Colors.cyan,),
+              label: 'Contacts',),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_outline_sharp,size: 40.0, color: Colors.cyan ,),
+              label: 'Profile',),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.logout,size: 30.0, color: Colors.cyan,),
+              label: 'LogOut',              
+            ),
+          ],
+          ), 
+
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.group),
+      //   onPressed: () => Navigator.of(context).push(
+      //     MaterialPageRoute(
+      //       builder: (_) => GroupChatHomeScreen(),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }
