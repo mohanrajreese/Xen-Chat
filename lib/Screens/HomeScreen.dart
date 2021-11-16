@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_statements
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
@@ -61,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
     setState(() {
       isLoading = true;
     });
-
+    
     await _firestore
         .collection('users')
         .where("email", isEqualTo: _search.text)
@@ -73,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
       });
       print(userMap);
     });
+  
   }
 
   @override
@@ -88,9 +91,9 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               width: 150,
             ),
             centerTitle: true,
-        // actions: [
-        //   IconButton(icon: Icon(Icons.logout), onPressed: () => logOut(context))
-        // ],
+        actions: [
+          IconButton(icon: Icon(Icons.logout), onPressed: () => logOut(context))
+        ],
       ),
       body: isLoading
           ? Center(
@@ -167,13 +170,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               bottomNavigationBar: BottomNavigationBar(
             onTap: (int val) {
               setState(() { _index = val; } );
-              // if(val==0){
-              //   Navigator.push(context,
-              //       MaterialPageRoute(
-              //         builder: (context)=> GroupChatHomeScreen(),
-              //       )
-              //   );
-              // }
+              if(val==0){
+                Navigator.push(context,
+                    MaterialPageRoute(
+                      builder: (context)=> GroupChatHomeScreen(),
+                    )
+                );
+              }
               if(val==1){
                 Navigator.push(context,
                     MaterialPageRoute(
@@ -182,19 +185,13 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                 );
               }
               // if(val==2){
-              //   Navigator.push(context,
+              //       Navigator.push(context,
               //       MaterialPageRoute(
               //         builder: (context)=> logOut(),
               //       )
               //   );
               // }
-              // if(val==3){
-              //   Navigator.push(context,
-              //       MaterialPageRoute(
-              //         builder: (context)=> landingPage(),
-              //       )
-              //   );
-              // }
+        //     
             },
             backgroundColor: CupertinoColors.tertiarySystemGroupedBackground,
             currentIndex: _index,
@@ -211,21 +208,18 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
             BottomNavigationBarItem(
               icon: Icon(Icons.logout,size: 40.0, color: CupertinoColors.activeBlue ,),
               label: 'Logout',),
-            // BottomNavigationBarItem(
-            //   icon: Icon(Icons.logout,size: 30.0, color: Colors.cyan,),
-            //   label: 'LogOut',              
-          //   ),
+            
           ],
           ), 
 
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.group),
-      //   onPressed: () => Navigator.of(context).push(
-      //     MaterialPageRoute(
-      //       builder: (_) => GroupChatHomeScreen(),
-      //     ),
-      //   ),
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.group),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => GroupChatHomeScreen(),
+          ),
+        ),
+      ),
     );
   }
 }

@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "843922507643",
-    "project_id": "xenchat-a05ef",
-    "storage_bucket": "xenchat-a05ef.appspot.com"
+    "project_number": "235713081103",
+    "project_id": "chatapp-e3ec9",
+    "storage_bucket": "chatapp-e3ec9.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:843922507643:android:380ac421160733d4a7dfde",
+        "mobilesdk_app_id": "1:235713081103:android:c70c1eba5bc0413747187a",
         "android_client_info": {
-          "package_name": "com.example.xenchat"
+          "package_name": "com.example.chat_app"
         }
       },
       "oauth_client": [
         {
-          "client_id": "843922507643-8o16ebd2dvheb5v0855c8l0jchhfjc82.apps.googleusercontent.com",
+          "client_id": "235713081103-7hjtlmnc5o1eh23q0r2avgm0oie00ihb.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyD-XUqBOghWoTQYqgVzPtvGNrA9CG_c1Fg"
+          "current_key": "AIzaSyDOT9GxC7ZC67Ym7lPVec37unbuMB0VpQQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "843922507643-8o16ebd2dvheb5v0855c8l0jchhfjc82.apps.googleusercontent.com",
+              "client_id": "235713081103-7hjtlmnc5o1eh23q0r2avgm0oie00ihb.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
