@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:xenchat/Authenticate/CreateAccount.dart';
-import 'package:xenchat/Authenticate/Methods.dart';
-import 'package:xenchat/Screens/HomeScreen.dart';
+import 'package:mohan/Authenticate/CreateAccount.dart';
+import 'package:mohan/Authenticate/Methods.dart';
+import 'package:mohan/Screens/HomeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
@@ -40,14 +41,14 @@ class _LoginScreenState extends State<LoginScreen> {
                   //       icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
                   // ),
                   Image.asset(
-                  'media/XenLogo.png',
-                  height: 150.0,
-                  width: 600.0,
-                ),
-                // Spacer(
-                //   flex:3,
-                //   ),
-              
+                    'media/XenLogo.png',
+                    height: 150.0,
+                    width: 600.0,
+                  ),
+                  // Spacer(
+                  //   flex:3,
+                  //   ),
+
                   SizedBox(
                     height: size.height / 50,
                   ),
@@ -56,36 +57,31 @@ class _LoginScreenState extends State<LoginScreen> {
                     child: Text(
                       "Sign In To Continue",
                       style: TextStyle(
-                        fontFamily: 'Rubik',
-                      fontSize: 30,
-                      color: Colors.pinkAccent,
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 0.8),
-                  textAlign: TextAlign.center,
+                          fontFamily: 'Rubik',
+                          fontSize: 30,
+                          color: Colors.pinkAccent,
+                          fontWeight: FontWeight.w400,
+                          letterSpacing: 0.8),
+                      textAlign: TextAlign.center,
                     ),
                   ),
-                 
+
                   SizedBox(
                     height: size.height / 12,
                   ),
-                  
-                  Container(
 
+                  Container(
                     width: size.width,
                     alignment: Alignment.center,
-                    child: field(size, "email",  Icons.account_box, _email),
+                    child: field(size, "email", Icons.account_box, _email),
                   ),
                   Padding(
-                    padding: const 
-                    EdgeInsets.symmetric(
-                      vertical: 18.0
-                    ),
+                    padding: const EdgeInsets.symmetric(vertical: 18.0),
                     child: Container(
                       width: size.width,
                       alignment: Alignment.center,
                       child: field(size, "password", Icons.lock, _password),
                     ),
-                  
                   ),
                   SizedBox(
                     height: size.height / 10,
@@ -94,6 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   SizedBox(
                     height: size.height / 40,
                   ),
+                  
                   GestureDetector(
                     onTap: () => Navigator.of(context).push(
                         MaterialPageRoute(builder: (_) => CreateAccount())),
@@ -132,6 +129,11 @@ class _LoginScreenState extends State<LoginScreen> {
               print("Login Failed");
               setState(() {
                 isLoading = false;
+                CupertinoAlertDialog(
+                  title: Text("Login Failed"),
+                  
+                  // insetAnimationDuration:,
+                );
               });
             }
           });

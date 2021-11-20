@@ -1,4 +1,4 @@
-import 'package:xenchat/Authenticate/Autheticate.dart';
+import 'package:mohan/Authenticate/Autheticate.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 

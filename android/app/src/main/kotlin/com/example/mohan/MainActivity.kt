@@ -1,4 +1,4 @@
-package com.example.xenchat
+package com.example.mohan
 
 import io.flutter.embedding.android.FlutterActivity
 

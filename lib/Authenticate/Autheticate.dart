@@ -1,5 +1,5 @@
-import 'package:xenchat/Screens/HomeScreen.dart';
-import 'package:xenchat/Authenticate/LoginScree.dart';
+import 'package:mohan/Screens/HomeScreen.dart';
+import 'package:mohan/Authenticate/LoginScree.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 

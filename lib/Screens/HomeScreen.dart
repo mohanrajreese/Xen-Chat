@@ -2,13 +2,12 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:floating_bottom_navigation_bar/floating_bottom_navigation_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import 'package:xenchat/Authenticate/Methods.dart';
-import 'package:xenchat/Screens/ChatRoom.dart';
-import 'package:xenchat/group_chats/group_chat_screen.dart';
+import 'package:mohan/Authenticate/Methods.dart';
+import 'package:mohan/Screens/ChatRoom.dart';
+import 'package:mohan/group_chats/group_chat_screen.dart';
 
 class HomeScreen extends StatefulWidget {
     const HomeScreen({Key? key}) : super(key: key);

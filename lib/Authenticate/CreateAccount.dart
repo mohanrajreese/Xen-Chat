@@ -1,5 +1,5 @@
 import 'package:flutter/rendering.dart';
-import 'package:xenchat/Authenticate/Methods.dart';
+import 'package:mohan/Authenticate/Methods.dart';
 import 'package:flutter/material.dart';
 
 import '../Screens/HomeScreen.dart';

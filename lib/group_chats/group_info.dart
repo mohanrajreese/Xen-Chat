@@ -1,5 +1,5 @@
-import 'package:xenchat/Screens/HomeScreen.dart';
-import 'package:xenchat/group_chats/add_members.dart';
+import 'package:mohan/Screens/HomeScreen.dart';
+import 'package:mohan/group_chats/add_members.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
