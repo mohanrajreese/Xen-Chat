@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     child: TextField(
                       controller: _search,
                       decoration: InputDecoration(
-                        hintText: "Search",
+                        hintText: "Search here",
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
@@ -172,7 +172,7 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
               if(val==0){
                 Navigator.push(context,
                     MaterialPageRoute(
-                      builder: (context)=> GroupChatHomeScreen(),
+                      builder: (context)=> HomeScreen(),
                     )
                 );
               }
@@ -183,14 +183,12 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
                     )
                 );
               }
-              // if(val==2){
-              //       Navigator.push(context,
-              //       MaterialPageRoute(
-              //         builder: (context)=> logOut(),
-              //       )
-              //   );
-              // }
-        //     
+              if(val==2){
+                    () => logOut(context);
+              }
+        //     actions: [
+        //   IconButton(icon: Icon(Icons.logout), )
+        // ],
             },
             backgroundColor: CupertinoColors.tertiarySystemGroupedBackground,
             currentIndex: _index,
@@ -198,27 +196,27 @@ class _HomeScreenState extends State<HomeScreen> with WidgetsBindingObserver {
           items: const <BottomNavigationBarItem>[
             
             BottomNavigationBarItem(
-              icon: Icon(Icons.chat_sharp,size: 40.0, color: CupertinoColors.systemBlue,),
-              label: 'Messages',),
+              icon: Icon(Icons.home,size: 40.0, color: CupertinoColors.systemBlue,),
+              label: 'Home',),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.groups_outlined,size: 40.0,color: CupertinoColors.systemBlue,),
               label: 'Groups',),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.logout,size: 40.0, color: CupertinoColors.activeBlue ,),
-              label: 'Logout',),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.logout,size: 40.0, color: CupertinoColors.activeBlue ,),
+            //   label: 'Logout',),
             
           ],
           ), 
 
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.group),
-        onPressed: () => Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => GroupChatHomeScreen(),
-          ),
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.group),
+      //   onPressed: () => Navigator.of(context).push(
+      //     MaterialPageRoute(
+      //       builder: (_) => GroupChatHomeScreen(),
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

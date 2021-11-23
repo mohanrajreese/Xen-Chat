@@ -76,86 +76,86 @@ class _GroupChatHomeScreenState extends State<GroupChatHomeScreen> {
               },
             ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: (int val) {
-          setState(() {
-            _index = val;
-          });
-          if (val == 0) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddMembersInGroup(),
-                ));
-          }
-          if (val == 1) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddMembersInGroup(),
-                ));
-          }
-          if (val == 2) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddMembersInGroup(),
-                ));
-          }
-          if (val == 3) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => AddMembersInGroup(),
-                ));
-          }
-        },
-        backgroundColor: CupertinoColors.systemPink,
-        currentIndex: _index,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_sharp,
-              size: 40.0,
-              color: Colors.cyan,
-            ),
-            label: 'Messages',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.contacts_rounded,
-              size: 40.0,
-              color: Colors.cyan,
-            ),
-            label: 'Contacts',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.person_outline_sharp,
-              size: 40.0,
-              color: Colors.cyan,
-            ),
-            label: 'Profile',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.logout,
-              size: 30.0,
-              color: Colors.cyan,
-            ),
-            label: 'LogOut',
-          ),
-        ],
-      ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.create),
-      //   onPressed: () => Navigator.of(context).push(
-      //     MaterialPageRoute(
-      //       builder: (_) => AddMembersInGroup(),
+      // bottomNavigationBar: BottomNavigationBar(
+      //   onTap: (int val) {
+      //     setState(() {
+      //       _index = val;
+      //     });
+      //     if (val == 0) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => AddMembersInGroup(),
+      //           ));
+      //     }
+      //     if (val == 1) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => AddMembersInGroup(),
+      //           ));
+      //     }
+      //     if (val == 2) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => AddMembersInGroup(),
+      //           ));
+      //     }
+      //     if (val == 3) {
+      //       Navigator.push(
+      //           context,
+      //           MaterialPageRoute(
+      //             builder: (context) => AddMembersInGroup(),
+      //           ));
+      //     }
+      //   },
+        backgroundColor: CupertinoColors.systemGrey6,
+        // currentIndex: _index,
+      //   items: const <BottomNavigationBarItem>[
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.group_outlined,
+      //         size: 40.0,
+      //         color: Colors.cyan,
+      //       ),
+      //       label: 'Groups',
       //     ),
-      //   ),
-      //   tooltip: "Create Group",
+      //     // BottomNavigationBarItem(
+      //     //   icon: Icon(
+      //     //     Icons.contacts_rounded,
+      //     //     size: 40.0,
+      //     //     color: Colors.cyan,
+      //     //   ),
+      //     //   label: 'Contacts',
+      //     // ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.person_outline_sharp,
+      //         size: 40.0,
+      //         color: Colors.cyan,
+      //       ),
+      //       label: 'Create Group',
+      //     ),
+      //     BottomNavigationBarItem(
+      //       icon: Icon(
+      //         Icons.logout,
+      //         size: 30.0,
+      //         color: Colors.cyan,
+      //       ),
+      //       label: 'LogOut',
+      //     ),
+      //   ],
       // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (_) => AddMembersInGroup(),
+          ),
+        ),
+        tooltip: "Create Group",
+      ),
     );
   }
 }
